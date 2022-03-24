@@ -1,5 +1,4 @@
 # %%
-import leafmap
 import folium
 from streamlit_folium import folium_static
 from matplotlib import cm
@@ -11,7 +10,6 @@ import rasterio
 from rasterio import warp
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import KMeans
-# plt.rcParams["figure.figsize"] = (10, 8)
 
 # %%
 # Get the less cloudy image, the clipping window around a given a point, and its transform object
@@ -142,13 +140,13 @@ def read_sentinel2(best_image, window, transform, plotimage=False):
         plt.imshow(img_arr, cmap='Greys_r')
         plt.axis('off')
     
-    return image_array, image_bounds
+    return image_array, image_bounds, sref
 
 # %%
 # Perform a K-Means clustering
 def get_clusters(image_array, nclusters=5, plotimage=False):
     """
-    Using the satellite image subset numpy array, calculate the specified
+    Using the satellite image subset array, calculate the specified
     number of clusters and return a numpy array.
 
     INPUT   -   image_array:        Satellite image stored as a 3D array
@@ -243,3 +241,29 @@ def show_folium_map(clusters_array, lon, lat, image_bounds):
     folium_map = folium_static(m, width=1000)
 
     return folium_map
+
+# %%
+# Export clusters to GeoTIFF
+def export_clusters(clusters_array, sref, transform):
+    """
+    Export the clusters array to GeoTIFF.
+
+    INPUT   -   clusters_array:     Numpy array with the clusters
+            -   sref:               Spatial reference of the original image
+    OUTPUT  -   GeoTIFF:            File named 'clusters.tif'
+    """
+
+    # Export clusters
+    profile = {
+        'driver':   'GTiff',
+        'height':   clusters_array.shape[0],
+        'width':    clusters_array.shape[1],
+        'count':    1,
+        'dtype':    rasterio.uint8,
+        'crs':      sref,
+        'transform':transform
+    }
+    with rasterio.open('clusters.tif', 'w',**profile) as dst:
+        dst.write(clusters_array, 1)
+
+    return 'clusters.tif'
