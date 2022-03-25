@@ -1,0 +1,16 @@
+name: st-kmeans
+channels:
+  - conda-forge
+dependencies:
+  - streamlit
+  - streamlit-folium
+  - rasterio
+  - numpy
+  - pandas
+  - matplotlib
+  - altair
+  - folium
+  - scikit-learn
+  - pip
+  - pip:
+    - pystac_client

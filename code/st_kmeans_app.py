@@ -1,11 +1,8 @@
 from altair import Chart, Color, Scale
 from datetime import date, timedelta
-from matplotlib import cm
 import streamlit as st
 import stac_kmeans as sk
-import io
 
-# st.set_page_config(layout="wide")
 st.set_page_config(
      page_title="Sentinel-2 10-m bands clustering",
      page_icon=":satellite:",
@@ -20,7 +17,7 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Main title
-st.title("Sentinel-2 10-m cloud optimized GeoTIFF clustering")
+st.title("Cloud-optimized GeoTIFF clustering on Sentinel-2 images")
 
 # Streamlit parameters
 st.sidebar.title("Define the location, satellite image parameters, and the number of clusters")

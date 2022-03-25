@@ -263,7 +263,7 @@ def export_clusters(clusters_array, sref, transform):
         'crs':      sref,
         'transform':transform
     }
-    with rasterio.open('clusters.tif', 'w',**profile) as dst:
+    with rasterio.open('clusters.tif', 'w', **profile) as dst:
         dst.write(clusters_array, 1)
 
     return 'clusters.tif'
