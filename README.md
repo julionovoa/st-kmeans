@@ -1,10 +1,9 @@
-# A streamlit app for performing k-means clustering on the 10-m bands of the Sentinel-2 satellite.
+# Sentinel-2 cloud-optimized GeoTIFF clustering
 ## Contents
-1. Introduction
-2. Installation
-3. Usage
-4. Results
-5. Next steps
+1. [Introduction](#1-introduction)
+2. [Installation](#2-installation)
+3. [Usage](#3-usage)
+4. [Conclusions](#4-conclusions)
 
 ### 1. Introduction
 Until recently, satellite image processing required to locally store these datasets for performing any pre-processing or analyses. Nowadays, recent advances in streaming protocols for geospatial information, in particular cloud-optimized GeoTIFFs ([COG](https://www.cogeo.org/)), and specifications for indexing and discovering geospatial datasets such as the SpatioTemporal Asset Catalog ([STAC](https://stacspec.org/)) specification, have created a new paradigm in remote sensing for data retrieval, processing, and analysis, where one can process satellite imagery on-premises or in the cloud, without downloading these massive datasets.
@@ -14,35 +13,37 @@ This repository contains an example of how to perform a cluster analysis (i.e. u
 ### 2. Installation
 A `conda` environment was created, and the following Python libraries were installed using the command `conda env create -f environment.yml`:
 - streamlit
+- streamlit_folium
+- folium
 - pystac_client
 - rasterio
 - numpy
 - pandas
 - matplotlib
 - altair
-- folium
 - scikit-learn
 
 ### 3. Usage
+Once the conda environment was create and activated, use the terminal to execute the command `streamlit run code/st_kmeans_app.py`.
+
 The Streamlit app contains two main elements, the sidebar on the left and the results area on the right. On the sidebar the user must specify the following parameters:
 - Longitude:            central longitude of the area of interest, expressed in decimal degrees
 - Latitude:             central latitude of the area of interest, expressed in decimal degrees
 - Start date:           satellite image start acquisition date   
 - End date:             satellite image end acquisition date
-- Maximum cloud cover:  maximum cloud cover, expresed as percentage
-- Image width/heigh:    size of the area of interest, expressed in kilometers
+- Maximum cloud cover:  maximum cloud cover, expressed as percentage
+- Image width/height:   size of the area of interest, expressed in kilometers
 - Number of clusters:   desired number of clusters
 
-Once all the parameters have been specified, clicking on the `Calculate clusters` button will generate on the results area, a bar chart showig the area (in hectares) covered by each cluster, and a map where the user can turn on and off the clusters to compare them with the underlying satellite imagery.
+Once all the parameters have been specified, clicking on the `Calculate clusters` button will generate on the results area, a bar chart showing the area (in hectares) covered by each cluster, and a map where the user can turn on and off the clusters to compare them with the underlying satellite imagery.
 
-Finally, if desired, the user can download the clusters GeoTIFF for further processing or carrtographic production (e.g. QGIS). For downloading the clusters the user must click on the button called `Download clusters`.
+Finally, if desired, the user can download a GeoTIFF for further processing (e.g. QGIS). For downloading the clusters' GeoTIFF the user must click on the button called `Download clusters`.
 
 ![](etc/app.png)
 
-### 4. Results
-Several random locations were tested during the creation of this app, at the results shown are accurate, as far as an unsupervised classification could be. This means that with no training on these images one is able of generating a simple and effective land cover map to have a better understanding of the area of interest and the changing dynamics occuring there.
+### 4. Conclusions
+Several random locations were tested during the creation of this app, and the results shown were visually accurate. The usefulness of this algorithm lies on there is no need to train the satellite image to generate a fast land cover map to help one understands  the landscape under study. It is worth mentioning the satellite background shown in the map widget is not the original Sentinel-2 image used for calculating the clusters. This decision was taken to avoid using too many computing resources, but in a larger scale production environment this can easily be modified.
 
-### 5. Next steps
-The code provided in this repository is aimed to be used as a starting point in the search, retrieval, and analysis of satellite imagery using COGs and the STAC specification, to leverage powerful analystics to be applied to several business cases that can benefit from it.
+The code provided in this repository can be used as a starting point for developing analysis and visualization tools that make use of relatively new technologies for the search, retrieval, and analysis of satellite imagery, specifically COGs and the STAC specification.
 
-I you need more information, [contact me](https://twitter.com/julionovoa_) on Twitter.
+I you need more information, feel free to [contact me](https://twitter.com/julionovoa_).

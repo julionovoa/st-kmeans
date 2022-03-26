@@ -4,7 +4,7 @@ import streamlit as st
 import stac_kmeans as sk
 
 st.set_page_config(
-     page_title="Sentinel-2 10-m bands clustering",
+     page_title="Sentinel-2 Image Clustering",
      page_icon=":satellite:",
      layout="wide"
  )
@@ -17,7 +17,7 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Main title
-st.title("Cloud-optimized GeoTIFF clustering on Sentinel-2 images")
+st.title("Sentinel-2 cloud-optimized GeoTIFF clustering")
 
 # Streamlit parameters
 st.sidebar.title("Define the location, satellite image parameters, and the number of clusters")

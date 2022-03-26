@@ -1,5 +1,8 @@
 # %%
+import tempfile
+import io
 import folium
+from sklearn import cluster
 from streamlit_folium import folium_static
 from matplotlib import cm
 import matplotlib.pyplot as plt
@@ -263,7 +266,16 @@ def export_clusters(clusters_array, sref, transform):
         'crs':      sref,
         'transform':transform
     }
+
     with rasterio.open('clusters.tif', 'w', **profile) as dst:
         dst.write(clusters_array, 1)
 
     return 'clusters.tif'
+
+    # tmpfile = tempfile.NamedTemporaryFile('w')
+    # with rasterio.open(tmpfile.name, 'w', **profile) as dataset:
+    #     print(dataset.meta)
+    #     dataset.write(clusters_array, 1)
+    # return tmpfile
+        
+# %%
