@@ -24,19 +24,19 @@ st.sidebar.title("Define the location, satellite image parameters, and the numbe
 with st.sidebar.form(key='params_form'):
     lon = st.number_input(
         label='Longitud',
-        format='%.6f',
+        format='%.5f',
         step=0.000001,
         min_value=-180.0,
         max_value=180.0,
-        value=-123.37294
+        value=-124.20160
     )
     lat = st.number_input(
         label='Latitude',
-        format='%.6f',
+        format='%.5f',
         step=0.000001,
         min_value=-90.0,
         max_value=90.0,
-        value=48.46334
+        value=49.17965
     )
     start_date = st.date_input(
         label='Start date',
