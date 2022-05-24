@@ -1,0 +1,10 @@
+streamlit
+streamlit-folium
+folium
+rasterio
+numpy
+pandas
+matplotlib
+altair
+scikit-learn
+pystac_client
