@@ -1,4 +1,3 @@
-name: st-kmeans
 channels:
   - conda-forge
 dependencies:
