@@ -265,4 +265,4 @@ dependencies:
   - pip:
     - pystac==1.2.0
     - pystac-client==0.3.2
-
+prefix: C:\Users\julio\miniconda3\envs\st-kmeans
