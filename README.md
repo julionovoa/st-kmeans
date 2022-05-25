@@ -11,7 +11,8 @@ Until recently, satellite image processing required to locally store these datas
 This repository contains an example of how to perform a cluster analysis (i.e. unsupervised classification) on a Sentinel-2 satellite image, using its four 10-m spatial resolution bands, and how to create a Streamlit app to allow user's interaction and results visualization. The algorithm used was [k-means](https://en.wikipedia.org/wiki/K-means_clustering) and the clusters can be generated anywhere in the world where there is availability of Sentinel-2 imagery. The satellite imagery is searched and retrieved from a public AWS catalog, the clusters are calculated and a bar chart and a map are shown on the app.
 
 ### 2. Installation
-A `conda` environment was created, and the following Python libraries were installed using the command `conda env create -f environment.yml`:
+You must have [Miniconda](https://docs.conda.io/en/latest/miniconda.html) and [Git](https://git-scm.com/) installed. Open the Miniconda terminal and clone this repository using `git clone https://github.com/julionovoa/st-kmeans.git`, go to the cloned repository's directory, and create a new `conda` environment using  `conda env create -f environment.yml`. Activate the new conda environment using `activate st-kmeans`.
+These are the main Python libraries installed :
 - streamlit
 - streamlit_folium
 - folium
