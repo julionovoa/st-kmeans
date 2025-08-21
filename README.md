@@ -47,4 +47,3 @@ Massive amounts of satellite imagery are made available every day by cloud provi
 
 The effectiveness of this algorithm lies in that there is no need to train the satellite image to generate a fast land cover map to help one understand the area under study. It is worth mentioning the satellite background shown in the map widget is not the original Sentinel-2 image used for calculating the clusters, so this is not a direct visual comparison between the raw imagery and the resulting clusters. This limitation was adopted in this demo app to avoid using too many computing resources, but in a larger scale production environment this can be easily improved.
 
-If you need more information, feel free to [contact me](https://twitter.com/julionovoa_).
